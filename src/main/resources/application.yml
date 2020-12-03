@@ -1,14 +1,0 @@
-spring:
-#  datasource:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/fruit_market_db
-#    username: root
-#    password: secret
-  jpa:
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        ddl-auto: none
-    generate-ddl: true
-    show-sql: true                        
-   
