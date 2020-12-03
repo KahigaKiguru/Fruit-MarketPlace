@@ -35,7 +35,7 @@ public class Seller {
 	@Column(name = "total_revenue")
 	private double totalRevenue;
 		
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(
 			name = "sellers_roles",
 			joinColumns = @JoinColumn(name = "seller_id", referencedColumnName = "seller_id"),
