@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Fruit Marketplace</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<nav class="navbar navbar-expand-sm navbar-light" style="background-color: #e3f2fd;">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="login.html">Fruit Market</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a th:href="@{/seller/sellerCreatePage}">Become a Seller</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<table border="1" class="table table-striped table-responsive-md">
+		<thead>
+			<tr>
+				<th>photo</th>
+				<th>Fruit Name</th>
+				<th>Quantity</th>
+				<th>in Season</th>
+				<th>price</th>
+				<th>seller</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="fruit : ${fruits}">
+				<td th:text="${fruit.photo}"></td>
+				<td th:text="${fruit.name}"></td>
+				<td th:text="${fruit.quantity}"></td>
+				<td th:text="${fruit.inSeason}"></td>
+				<td th:text="${fruit.price}"></td>
+				<td th:text="${fruit.seller.name}"></td>
+				<td><a th:href="@{/showUpdateForm/{id}(id=${employee.id})}"
+					class="btn btn-primary">Update</a> <a
+					th:href="@{/deleteEmployee/{id}(id=${employee.id})}"
+					class="btn btn-danger">Delete</a></td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+</body>
+</html>

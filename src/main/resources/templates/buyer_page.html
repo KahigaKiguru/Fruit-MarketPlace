@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="ISO-8859-1">
+<title>Buyer Page</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<nav class="navbar navbar-expand-sm navbar-light" th:object="${buyer}"
+		style="background-color: #e3f2fd;">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Fruit Market</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a th:object="${cart}" th:href="@{/buyer/cart/cartPage/{cart_id}(cart_id=${cart.id})}">Cart</a></li>
+				<li><a th:href="@{/buyer/logout}">log out</a></li>
+				</ul>
+		</div>
+	</nav>
+	<!-- Show list of all fruits from all sellers -->
+	<!-- Greet User -->
+	<h1 th:object="${buyer}"> Welcome <span th:text="${buyer.name}"> </span>[Welcome]</h1>
+
+	<div class="container my-2">
+		<h1>All the healthy treats you can find</h1>
+		<br>
+		
+		<table class="table table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th>Fruit id</th>
+					<th>Fruit Name</th>
+					<th>Fruit quantity</th>
+					<th>Description</th>
+					<th>Price Per Fruit ($)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="fruit : ${allfruits}">
+					<td th:text="${fruit.id}"></td>
+					<td th:text="${fruit.name}"></td>
+					<td th:text="${fruit.quantity}"></td>
+					<td th:text="${fruit.description}"></td>
+					<td th:text="${fruit.price}"></td>
+					<td><a
+						th:href="@{/buyer/cart/confirmAdd(fruit_id=${fruit.id}, buyer_id=${buyer.id})}"
+						class="btn btn-success">Add to cart</a></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Update Fruit</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<nav class="navbar navbar-expand-sm navbar-light">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="login.html">Fruit Market</a>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<h1>Update Fruit</h1>
+		<form th:object="${fruit}"
+			th:action="@{/seller/fruits/update/fruit/{fruit_id}(fruit_id=${fruit_id})}" method="post"
+			enctype="multipart/form-data">
+			
+			<input type="hidden" th:field="*{id}"/>
+			
+			<input type="text" th:field="*{name}" placeholder="Fruit name" class="form-control mb-4 col-4" /> 
+			<br> 
+<!-- 			<label> Fruit photo </label> 
+			<input type="file" name="photo" class="custom-file-input" />  -->
+			<br>
+			<input type="number" th:field="*{quantity}" placeholder="Fruit Quantity" class="form-control mb-4 col-4" /> 
+			<br> 
+			<input type="text" th:field="*{description}" placeholder="Describe this fruit"	class="form-control mb-4 col-4" /> 
+			<br> 
+			<input type="number" th:field="*{price}" placeholder="Fruit Price" class="form-control mb-4 col-4" /> 
+			<br>
+			<button type="submit" class="btn btn-primary col-2">Update Fruit</button>
+		</form>
+		<hr>
+		<a th:href="@{/seller/sellerPage/}">Back to Fruits List</a>
+	</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Seller Page</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<nav class="navbar navbar-expand-sm navbar-light"
+		style="background-color: #e3f2fd;">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Fruit Market</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a th:object="${seller}" th:href="@{/seller/fruit/add/{id}(id=${seller.id})}">Add
+						Fruits</a></li>
+				<li><a th:href="@{/seller/orders(id=${seller.id})}">Orders</a></li>
+				<li><a th:href="@{/seller/logout}">logout</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container my-2">
+		<h1>My Fruit Inventory </h1>
+		<h3> Total revenue : $ <span th:object="${seller}" th:text="${seller.totalRevenue}"></span></h3>
+		<h2 th:object="${seller}" th:text="${seller.id}"></h2>
+		<br>
+		<table  class="table table-striped table-responsive-md">
+			<thead>
+				<tr>
+		<!-- 			<th>Fruit Image</th> -->
+					<th>Fruit Name</th>
+					<th>Fruit Quantity</th>
+					<th>Description</th>
+					<th>Price</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr  th:each="fruit : ${sellerfruits}">
+					<td th:text="${fruit.name}"></td>
+					<td th:text="${fruit.quantity}"></td>
+					<td th:text="${fruit.description}"></td>
+					<td th:text="${fruit.price}"></td>
+
+					<td>
+						<a th:href="@{/seller/fruits/update/fruit/{fruit_id}(fruit_id=${fruit.id})}" class="btn btn-primary">Update</a>
+						<a th:href="@{/seller/fruits/delete/fruit/{fruit_id}(fruit_id=${fruit.id})}" class="btn btn-danger">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+</body>
+</html>

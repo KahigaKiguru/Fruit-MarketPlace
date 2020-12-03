@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Confirm Item</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<nav class="navbar navbar-expand-sm navbar-light" th:object="${buyer}"
+		style="background-color: #e3f2fd;">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Fruit Market</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a th:href="@{/seller/cart/cartPage/{cart_id}(cart_id=${cart.id})}">Cart</a></li>
+				<li><a th:href="@{/buyer/logout}">log out</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="card" >
+			<h1 th:object="${fruit}">Confirm Fruit</h1>
+			<form th:object="${fruit}" th:action="@{/buyer/cart/add(buyer_id=${buyer.id},fruit_id=${fruit.id})}" method="post" >
+				<!-- <input type="hidden" name="id"/> -->
+				<label>Fruit name: </label>
+				<input type="text" th:field ="*{name}" placeholder="Fruit name" disabled="disabled" class="form-control mb-4 col-4" />
+				 <br>
+				 <label>Fruits in Stock: </label>
+				<input type="number" th:field="*{quantity}" placeholder="Fruits in Stock" disabled="disabled" class="form-control mb-4 col-4" /> 
+				<br>
+				<label>How many fruits do you want ?</label>
+				<input type="number" name="purchasequantity" placeholder="How many fruits do you want" class="form-control mb-4 col-4" /> 
+				<br>
+				<label>Description:</label>
+				<input type="text"	th:field="*{description}" placeholder="Describe this fruit" disabled="disabled" class="form-control mb-4 col-4" />
+				<br> 
+				<label>Price : </label>
+				<input type="number" th:field="*{price}" placeholder="Fruit Price" disabled="disabled" class="form-control mb-4 col-4" /> 
+				<br>
+				<input type="submit" class="btn btn-primary col-2" value="Add To Cart"/>
+			</form>
+			<hr>
+			<a th:href="@{/buyer/buyerPage/}">Back to Fruits List</a>
+		</div>
+	</div>
+</body>
+</html>

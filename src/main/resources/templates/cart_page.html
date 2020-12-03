@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Cart Page</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<nav class="navbar navbar-expand-sm navbar-light"
+		style="background-color: #e3f2fd;">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Fruit Market</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a th:href="@{/buyer/buyerPage}">Fruit List</a></li>
+				<li><a th:href="@{/buyer/logout}">log out</a></li>
+			</ul>
+		</div>
+	</nav>
+		<div class="container my-2">
+		<h1>Fruit List</h1>
+		<br>
+		<table  class="table table-striped table-bordered table-sm table-responsive-md">
+			<thead class="thead-dark">
+				<tr>
+					<th>Fruit Name</th>
+					<th>Fruits in Stock</th>
+					<th>Description</th>
+					<th>Fruits requested</th>
+					<th> Total Price ($)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr  th:each="fruit : ${cartfruits}">
+					<td th:text="${fruit.name}"></td>
+					<td th:text="${fruit.quantity}"></td>
+					<td th:text="${fruit.description}"></td>
+					<td th:text="${fruit.purchasequantity}"></td>
+					<td th:text="${fruit.price * fruit.purchasequantity}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+		<br>
+		<a th:href="@{/buyer/cart/checkout(buyer_id=${buyer.id})}" class="btn btn-success btn-lg btn-block"> Checkout</a>
+
+	</div>
+</body>
+</html>
