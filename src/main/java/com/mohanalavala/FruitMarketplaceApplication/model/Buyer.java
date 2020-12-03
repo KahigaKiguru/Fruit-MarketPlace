@@ -3,6 +3,9 @@ package com.mohanalavala.FruitMarketplaceApplication.model;
 import java.util.Collection;
 import javax.persistence.*;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 @Entity
 @Table(name = "buyers", uniqueConstraints = @UniqueConstraint(columnNames = "email_address"))
 public class Buyer {
@@ -21,7 +24,8 @@ public class Buyer {
 	@Column(name = "password")
 	private String password;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinTable(
 			name = "buyers_roles",
 			joinColumns = @JoinColumn(name = "buyer_id", referencedColumnName = "buyer_id"),

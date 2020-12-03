@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 @Entity
 @Table(name = "sellers", uniqueConstraints = @UniqueConstraint(columnNames = "email_address"))
 public class Seller {
@@ -36,6 +39,7 @@ public class Seller {
 	private double totalRevenue;
 		
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinTable(
 			name = "sellers_roles",
 			joinColumns = @JoinColumn(name = "seller_id", referencedColumnName = "seller_id"),
