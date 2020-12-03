@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "sellers", uniqueConstraints = @UniqueConstraint(columnNames = "email_address"))
+@SequenceGenerator(name = "hibernate_sequence", sequenceName = "hibernate_sequence", allocationSize = 1)
 public class Seller {
 	
 	@Id
