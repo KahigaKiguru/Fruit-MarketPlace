@@ -7,7 +7,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "sellers", uniqueConstraints = @UniqueConstraint(columnNames = "email_address"))
-@SequenceGenerator(name = "hibernate_sequence", sequenceName = "hibernate_sequence", allocationSize = 1)
 public class Seller {
 	
 	@Id
@@ -36,7 +35,7 @@ public class Seller {
 	@Column(name = "total_revenue")
 	private double totalRevenue;
 		
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(
 			name = "sellers_roles",
 			joinColumns = @JoinColumn(name = "seller_id", referencedColumnName = "seller_id"),

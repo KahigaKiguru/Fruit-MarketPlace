@@ -5,7 +5,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "buyers", uniqueConstraints = @UniqueConstraint(columnNames = "email_address"))
-@SequenceGenerator(name = "hibernate_sequence", sequenceName = "hibernate_sequence", allocationSize = 1)
 public class Buyer {
 
 	@Id
@@ -22,7 +21,7 @@ public class Buyer {
 	@Column(name = "password")
 	private String password;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(
 			name = "buyers_roles",
 			joinColumns = @JoinColumn(name = "buyer_id", referencedColumnName = "buyer_id"),
