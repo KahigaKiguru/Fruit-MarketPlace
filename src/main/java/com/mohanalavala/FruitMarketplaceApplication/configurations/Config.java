@@ -1,6 +1,5 @@
 package com.mohanalavala.FruitMarketplaceApplication.configurations;
 
-import org.springframework.boot.autoconfigure.security.SecurityProperties.Filter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

@@ -207,6 +207,7 @@ public class BuyerController {
 
 		model.addAttribute("orders", orders);
 		cart.getFruits().clear();
+		cartService.updateCart(cart);
 		return "redirect:/buyer/buyerPage";
 	}
 }

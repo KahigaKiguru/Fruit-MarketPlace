@@ -21,8 +21,6 @@ public class BuyerService implements UserDetailsService {
 	@Autowired
 	private BuyerRepository buyerRepository;
 	
-
-	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
